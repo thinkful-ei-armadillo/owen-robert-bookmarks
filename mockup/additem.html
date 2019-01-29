@@ -1,23 +1,94 @@
+<!--STORE
+  items: [bookmark list]
+  error: false -- user dependent
+  minRating: 0 -- user dependent
+  isAdding: true 
+
+
+-->
+
 <!DOCTYPE html>
 <html lang="eng">
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 </head>
+
 <body>
-  <header role="header">Page Title</header>
+  <header role="header">
+    <h1>Bookmarks</h1>
+    <section class="error-popup js-error-popup hidden"></section>
+  </header>
   <main>
-    <form class="form-submission js-form">
-      <label for="text-entry">Username</label>
-      <input type="text" class="text-entry js-search" placeholder="Enter here">
-      <input type="submit" class="submit-button js-submit">
-    </form>
-    <section class="js-results"></section>
+    <section class="list-controls js-list-controls">
+      <button class="add-item js-add-item">Add Item</button>
+      <label for="min-rating">Minimum Rating:</label>
+      <select class="min-rating js-min-rating">
+        <option value="0">None</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </section>
+
+    <section class="add-item-panel">
+      <form class="add-item-form">
+        <label for="item-title">Bookmark Title:</label> 
+        <input type="text" class="item-title">
+
+        <label for="item-description">Bookmark Description:</label>
+        <input type="text" class="item-description">
+
+        <label for="item-url">Bookmark URL</label>
+        <input type="text" class="item-url">
+
+        <label for="item-rating">Bookmark Rating</label>
+        <input type="number" min="1" max="5" value="5" class="item-rating">
+
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <section class="bookmark-list js-bookmark-list">
+      <ul>
+        <li class="bookmark-item js-bookmark-item" data-item-id=`${item.id}`>
+          <span class="bookmark">
+            <ul>
+              <li>Bookmark Name</li>
+              <li>Rating</li>
+              <li>Description</li>
+              <li>URL</li>
+            </ul>
+          </span>
+          <div class="bookmark-controls js-bookmark-controls">
+            <a href='condensed.html'><button class="toggle-expand js-toggle-expand">^</button></a>
+            <button class="remove js-remove">X</button>
+          </div>
+        </li>
+        <li class="bookmark-item js-bookmark-item" data-item-id=`${item.id}`>
+          <span class="bookmark">
+            <ul>
+              <li>Bookmark Name</li>
+              <li>Rating</li>
+            </ul>
+          </span>
+          <div class="bookmark-controls js-bookmark-controls">
+            <button class="expand js-expand">V</button>
+            <button class="remove js-remove">X</button>
+          </div>
+        </li>
+      </ul>
+    </section>
   </main>
   <script src="index.js"></script>
 </body>
+
 </html>

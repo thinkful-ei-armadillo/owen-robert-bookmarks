@@ -1,3 +1,13 @@
+<!--STORE
+  items: [bookmark list]
+  error: false -- user dependent
+  minRating: 0 -- user dependent
+  isAdding: false 
+
+
+-->
+
+
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -29,31 +39,31 @@
     <section class="bookmark-list js-bookmark-list">
       <ul>
         <li class="bookmark-item js-bookmark-item" data-item-id=`${item.id}`>
-          <span class="bookmark">Bookmark Name, Rating</span>
+          <span class="bookmark">
+            <ul>
+              <li>Bookmark Name</li>
+              <li>Rating</li>
+            </ul>
+          </span>
+          <div class="bookmark-controls js-bookmark-controls">
+            <a href='expanded.html'><button class="toggle-expand js-toggle-expand">V</button></a>
+            <button class="remove js-remove">X</button>
+          </div>
+        </li>
+        <li class="bookmark-item js-bookmark-item" data-item-id=`${item.id}`>
+          <span class="bookmark">
+            <ul>
+              <li>Bookmark Name</li> 
+              <li>Rating</li>
+            </ul>
+          </span>
           <div class="bookmark-controls js-bookmark-controls">
             <button class="expand js-expand">V</button>
             <button class="remove js-remove">X</button>
-          </div>          
+          </div>
         </li>
       </ul>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-    <form class="form-submission js-form">
-      <label for="text-entry">Username</label>
-      <input type="text" class="text-entry js-search" placeholder="Enter here">
-      <input type="submit" class="submit-button js-submit">
-    </form>
-    <section class="js-results"></section>
   </main>
   <script src="index.js"></script>
 </body>
