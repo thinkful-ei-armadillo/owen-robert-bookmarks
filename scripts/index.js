@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
   bookmark.bindEventListeners();
+  bookmark.render();
 
   // On initial load, fetch Bookmarks and render
   // api.getItems()

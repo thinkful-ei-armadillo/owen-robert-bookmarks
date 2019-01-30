@@ -2,7 +2,7 @@
 /* global $, store, api */
 
 //event handlers
-const bookmark = function() {
+const bookmark = (function() {
 
   const generateFormHtml = function() {
     return `
@@ -97,6 +97,7 @@ const bookmark = function() {
       store.minRating = $('.min-rating').val();
       render();      
     });
+  }
 
   const handleExpand = function () {
     $('.bookmark-list-container').on('click', 'toggle-expand', function (e) {
@@ -115,12 +116,16 @@ const bookmark = function() {
 
   };
 
+  const bindEventListeners = function () {
+    handleExpand();
+    handleMinRating();
+    handleAddItem();
+    handleformSubmit();
+  }
+
   return {
-    handleAddItem,
-    handleformSubmit,
-    handleMinRating,
-    handleExpand,
-    handleDeleteItem
+    render,
+    bindEventListeners
   };
 
-}();
+})();
