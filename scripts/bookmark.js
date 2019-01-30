@@ -89,7 +89,7 @@ const bookmark = (function() {
   const handleformSubmit = function () {
     $('.add-item-panel').on('submit', function(e) {
       e.preventDefault();
-      let obj = $('form').serializeJson()
+      let obj = $('form').serializeJson();
 
       // new Formdata, in order to catch all inputs
       api.createItem(obj)
@@ -98,10 +98,8 @@ const bookmark = (function() {
           store.isAdding = false; //what's going on with this line
           render();
         })
-        // .catch(err => {
-        //   store.error = err.message;
-        //   render();
-        // }); // API call to POST item with given parameters, add to store.items after successful run
+        .catch(render());
+      // }); // API call to POST item with given parameters, add to store.items after successful run
     });
   };
 
@@ -135,7 +133,7 @@ const bookmark = (function() {
         .then(() =>{
           store.items = store.items.filter(item => item.id !== itemID);
           render();
-        })
+        });
     });
   };
 

@@ -1,4 +1,6 @@
 'use strict';
+/* global store */
+
 const api = function() {
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com';
   const key = 'bob-owen';
@@ -10,21 +12,23 @@ const api = function() {
         if(!res.ok) {
           error = true;
         }
-        return res.json()})
-      .then(data => {
-        
-        
-        if (error){
-          throw new Error(data.message)
+        return res.json();
+      })
+      .then(data =>{
+        if(error) {
+          throw new Error(data.message);
         }
-        
-        return data
+        return data;
+      })
+      .catch(error => {
+        console.log(error);
+        store.error = error;
       });
   };
 
   const getList = function () {
-    return apiCall(`${BASE_URL}/${key}/bookmarks`)
-  }
+    return apiCall(`${BASE_URL}/${key}/bookmarks`);
+  };
 
   const createItem = function(item) {
     return apiCall(`${BASE_URL}/${key}/bookmarks`, {
@@ -38,7 +42,7 @@ const api = function() {
 
   const deleteItem = function(id) {
     return apiCall(`${BASE_URL}/${key}/bookmarks/${id}`, {
-      method: 'DELETE',
+      method: 'DELETE'
     });  
   };
   
@@ -46,5 +50,5 @@ const api = function() {
     getList,
     createItem,
     deleteItem
-  }
-}()
+  };
+}();
