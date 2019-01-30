@@ -8,9 +8,11 @@ const api = function() {
     .then(res => res.json())
   }
 
-  const getBookmark = function () {
+  const getList = function () {
     return apiCall(`${BASE_URL}/${key}/bookmarks`)
   }
+
+
 
   const createItem = function(item) {
     return apiCall(`${BASE_URL}/${key}/bookmarks`, {
@@ -29,7 +31,7 @@ const api = function() {
 
 
   return {
-    getBookmark,
+    getList,
     createItem
   }
 }()

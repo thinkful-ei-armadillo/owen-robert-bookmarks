@@ -22,7 +22,12 @@ const store = (function(){
   let error = null;
   let minRating = 0;
 
+  const createItem = function(item) {
+    items.push(item);
+  }
+
   return {
+    createItem,
     items,
     isAdding,
     error,
