@@ -4,8 +4,22 @@ const api = function() {
   const key = 'bob-owen';
 
   const apiCall = function (...args) {
+    let error = '';
     return fetch(...args)
-      .then(res => res.json());
+      .then(res => {
+        if(!res.ok) {
+          error = true;
+        }
+        return res.json()})
+      .then(data => {
+        
+        
+        if (error){
+          throw new Error(data.message)
+        }
+        
+        return data
+      });
   };
 
   const getList = function () {
