@@ -12,8 +12,6 @@ const api = function() {
     return apiCall(`${BASE_URL}/${key}/bookmarks`)
   }
 
-
-
   const createItem = function(item) {
     return apiCall(`${BASE_URL}/${key}/bookmarks`, {
       method: 'POST',
@@ -24,14 +22,15 @@ const api = function() {
     });
   };
 
-  const deleteItem = function () {
-
+  const deleteItem = function(id) {
+    return apiCall(`${BASE_URL}/${key}/bookmarks/${id}`, {
+      method: 'DELETE',
+    });  
   };
   
-
-
   return {
     getList,
-    createItem
+    createItem,
+    deleteItem
   }
 }()

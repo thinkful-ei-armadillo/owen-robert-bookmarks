@@ -8,30 +8,30 @@ const bookmark = (function() {
     return `
       <form class="add-item-form">
         <label for="item-title">Bookmark Title:</label>
-        <input type="text" class="item-title">
+        <input type="text" name = "title" class="item-title">
 
         <label for="item-description">Bookmark Description:</label>
-        <input type="text" class="item-description">
+        <input type="text" name = "desc" class="item-description">
 
         <label for="item-url">Bookmark URL</label>
-        <input type="text" class="item-url">
+        <input type="text" name = "url" class="item-url">
 
         <label for="item-rating">Bookmark Rating</label>
-        <input type="number" min="1" max="5" value="5" class="item-rating">
+        <input type="number" name = "rating" min="1" max="5" value="5" class="item-rating">
 
         <button type="submit">Submit</button>
       </form>`;
   };
 
   const generateBookmarkHtml = function(item) {
-    const expanded = item.isExpanded ? `<li>${item.description}</li><li>${item.URL}</li>` : ''; 
+    const expanded = item.isExpanded ? `<li>${item.desc}</li><li><a href = "${item.url}">visit site</a></li>` : ''; 
     const expandArrow = item.isExpanded ? 'expand-up' : 'expand-down'; 
     
     return `
       <li class="bookmark-item js-bookmark-item" data-item-id="${item.id}">
         <span class="bookmark">
           <ul>
-            <li>${item.title}</li>
+            <li><h2>${item.title}</h2></li>
             <li>${item.rating}</li>
             ${expanded}
           </ul>
@@ -56,9 +56,12 @@ const bookmark = (function() {
   const render = function () {
     $('.js-bookmark-list').html(generateListHtml(filterRating()));
 
+    $('.add-item-panel').empty();
+
     if (store.isAdding) {
       $('.add-item-panel').html(generateFormHtml());
     }
+   
     if (store.error) {
       $('.error-popup').toggleClass('hidden');
       $('.error-popup').text(store.error);
@@ -74,20 +77,31 @@ const bookmark = (function() {
     });
   };
 
+  $.fn.extend({
+    serializeJson: function () {
+      const formData = new FormData(this[0]);
+      const o = {};
+      formData.forEach((val, name) => o[name] = val);
+      return JSON.stringify(o);
+    }
+  });
+
   const handleformSubmit = function () {
     $('.add-item-panel').on('submit', function(e) {
       e.preventDefault();
-      // let obj = serializeJSON(event.target)
+      let obj = $('form').serializeJson()
+
       // new Formdata, in order to catch all inputs
       api.createItem(obj)
         .then(newItem => {
-          store.addItem(newItem);
+          store.createItem(newItem);
+          store.isAdding = false; //what's going on with this line
           render();
         })
-        .catch(err => {
-          store.error = err.message;
-          render();
-        }); // API call to POST item with given parameters, add to store.items after successful run
+        // .catch(err => {
+        //   store.error = err.message;
+        //   render();
+        // }); // API call to POST item with given parameters, add to store.items after successful run
     });
   };
 
@@ -115,10 +129,13 @@ const bookmark = (function() {
   const handleDeleteItem = function () {
     $('.bookmark-list-container').on('click', '.remove', function (e){
       let itemID = findIDbyElement(e.target);
-      store.items = store.items.filter(item => item.id !== itemID);
-      render();
-      // api.deleteItem(item);
-
+      //store.items = store.items.filter(item => item.id !== itemID);
+      //render();
+      api.deleteItem(itemID)
+        .then(() =>{
+          store.items = store.items.filter(item => item.id !== itemID);
+          render();
+        })
     });
   };
 

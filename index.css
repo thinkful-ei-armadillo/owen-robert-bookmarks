@@ -1,0 +1,17 @@
+h2 {
+  margin:0;
+  padding:0;
+}
+
+li {
+  list-style:none;
+  
+}
+
+.bookmark-item {
+  border:1px solid black;
+}
+
+.bookmark-item button {
+  margin:auto;
+}
