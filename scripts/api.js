@@ -1,12 +1,12 @@
-'use strict'
+'use strict';
 const api = function() {
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com';
   const key = 'bob-owen';
 
   const apiCall = function (...args) {
     return fetch(...args)
-    .then(res => res.json())
-  }
+      .then(res => res.json());
+  };
 
   const getList = function () {
     return apiCall(`${BASE_URL}/${key}/bookmarks`)
@@ -18,15 +18,15 @@ const api = function() {
     return apiCall(`${BASE_URL}/${key}/bookmarks`, {
       method: 'POST',
       headers: {
-      'Content-Type':'application/json'
+        'Content-Type':'application/json'
       },
       body: item
-    })
-  }
+    });
+  };
 
   const deleteItem = function () {
 
-  }
+  };
   
 
 

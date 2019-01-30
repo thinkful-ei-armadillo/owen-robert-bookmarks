@@ -24,7 +24,7 @@ const bookmark = (function() {
   };
 
   const generateBookmarkHtml = function(item) {
-    const expanded = item.isExpanded ? `<li>${item.description}</li><li>${item.url}</li>` : ''; 
+    const expanded = item.isExpanded ? `<li>${item.description}</li><li>${item.URL}</li>` : ''; 
     const expandArrow = item.isExpanded ? 'expand-up' : 'expand-down'; 
     
     return `
@@ -90,7 +90,7 @@ const bookmark = (function() {
         }); // API call to POST item with given parameters, add to store.items after successful run
     });
   };
-  
+
   // come back later to handle minRating state reflecting on select element
   const handleMinRating = function () {
     $('.min-rating').change(function() {
