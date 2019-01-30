@@ -28,7 +28,7 @@ const bookmark = (function() {
     const expandArrow = item.isExpanded ? 'expand-up' : 'expand-down'; 
     
     return `
-      <li class="bookmark-item js-bookmark-item" data-item-id=${item.id }>
+      <li class="bookmark-item js-bookmark-item" data-item-id="${item.id}">
         <span class="bookmark">
           <ul>
             <li>${item.title}</li>
@@ -50,8 +50,8 @@ const bookmark = (function() {
   };
 
   const filterRating = function() {
-    return store.items.filter((item) => item.rating >= store.minRating)
-  }
+    return store.items.filter((item) => item.rating >= store.minRating);
+  };
 
   const render = function () {
     $('.js-bookmark-list').html(generateListHtml(filterRating()));
@@ -97,23 +97,29 @@ const bookmark = (function() {
       store.minRating = $('.min-rating').val();
       render();      
     });
-  }
+  };
 
   const handleExpand = function () {
-    $('.bookmark-list-container').on('click', 'toggle-expand', function (e) {
-      let itemID = findIDbyElement(event.target);
-      let item = store.items.find(itemID)
+    $('.bookmark-list-container').on('click', '.toggle-expand', function (e) {
+      let itemID = findIDbyElement(e.target);
+      let item = store.items.find(item => item.id === itemID);
       item.isExpanded = !item.isExpanded;
-    })
+      render();
+    });
   };
 
   const findIDbyElement = function (target) {
-    return $(target).parents('data-item-id').val(); //this may be formatted incorrectly
-    // store.items.find()
-  }
+    return $(target).parents('.bookmark-item').attr('data-item-id');
+  };
 
   const handleDeleteItem = function () {
+    $('.bookmark-list-container').on('click', '.remove', function (e){
+      let itemID = findIDbyElement(e.target);
+      store.items = store.items.filter(item => item.id !== itemID);
+      render();
+      // api.deleteItem(item);
 
+    });
   };
 
   const bindEventListeners = function () {
@@ -121,7 +127,8 @@ const bookmark = (function() {
     handleMinRating();
     handleAddItem();
     handleformSubmit();
-  }
+    handleDeleteItem();
+  };
 
   return {
     render,
