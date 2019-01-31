@@ -26,6 +26,7 @@ const bookmark = (function() {
   const generateBookmarkHtml = function(item) {
     const expanded = item.isExpanded ? `<li>${item.desc}</li><li><a href = "${item.url}">visit site</a></li>` : ''; 
     const expandArrow = item.isExpanded ? 'expand-up' : 'expand-down'; 
+    const expandArrowTest = item.isExpanded ? '^' : 'V'; 
     
     return `
       <li class="bookmark-item js-bookmark-item" data-item-id="${item.id}">
@@ -37,7 +38,7 @@ const bookmark = (function() {
           </ul>
         </span>
         <div class="bookmark-controls js-bookmark-controls">
-          <button class="toggle-expand js-toggle-expand ${expandArrow}">^</button>
+          <button class="toggle-expand js-toggle-expand ${expandArrow}"></button>
           <button class="remove js-remove">X</button>
         </div>
       </li>`;
