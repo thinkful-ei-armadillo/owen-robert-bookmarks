@@ -43,7 +43,7 @@ li {
   border:1px solid black;
 }
 
-.expand-down:hover {
+.expand-down:hover, .expand-up:hover {
   box-shadow: 1px 1px 1px black;
 }
 
