@@ -35,7 +35,7 @@ const bookmark = (function() {
     return `
       <li class="bookmark-item js-bookmark-item " data-item-id="${item.id}">
         <span class="bookmark">
-          <ul>
+          <ul class = "inside-item-list" >
             <li><h2>${item.title}</h2></li>
             <li class="star ${ratingClass[item.rating-1]}"></li>
             ${expanded}
@@ -43,7 +43,7 @@ const bookmark = (function() {
         </span>
         <div class="bookmark-controls js-bookmark-controls">
           <button class="toggle-expand js-toggle-expand ${expandArrow}"></button>
-          <button class="remove js-remove">X</button>
+          <button class="remove js-remove"></button>
         </div>
       </li>`;
   };
