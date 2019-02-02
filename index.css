@@ -3,9 +3,14 @@ h2 {
   padding:0;
 }
 
+
+.error-popup {
+  background-color: lightcoral;
+  color: black;
+}
+
 li {
   list-style:none;
-  
 }
 
 .bookmark-item {
@@ -14,4 +19,52 @@ li {
 
 .bookmark-item button {
   margin:auto;
+}
+
+.expand-down, .expand-up {
+  transition: background-image 0.2s ease-in-out;
+  background-size:cover;
+  background-position:center;
+  width:30px;
+  height:30px;
+  border-radius: 4px;
+  border:1px solid black;
+  }
+
+.expand-up {
+  background: url(assets/up-arrow.png) no-repeat 20px 20px;
+}
+
+.expand-down {
+  background: url(assets/down-arrow.png) no-repeat 20px 20px;
+}
+
+.expand-down:hover {
+  box-shadow: 1px 1px 1px black;
+  }
+
+.star {
+  background-size:cover;
+  background: url(assets/star.svg) 16px;
+  height: 15px;
+}
+
+.one-star {
+  width: 16px;
+}
+
+.two-star {
+  width: 32px;
+}
+
+.three-star {
+  width: 48px;
+}
+
+.four-star {
+  width: 64px;
+}
+
+.five-star {
+  width: 80px;
 }
