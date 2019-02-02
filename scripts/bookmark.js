@@ -27,6 +27,7 @@ const bookmark = (function() {
   const generateBookmarkHtml = function(item) {
     const expanded = item.isExpanded ? `<li>${item.desc}</li><li><a href = "${item.url}">visit site</a></li>` : ''; 
     const expandArrow = item.isExpanded ? 'expand-up' : 'expand-down'; 
+
     const ratingClass = ['one-star', 'two-star', 'three-star', 'four-star', 'five-star'];
 
     console.log(`this bookmark is rated ${item.rating}, which accesses the ${ratingClass[item.rating-1]} string element`)
@@ -41,7 +42,7 @@ const bookmark = (function() {
           </ul>
         </span>
         <div class="bookmark-controls js-bookmark-controls">
-          <button class="toggle-expand js-toggle-expand ${expandArrow}">^</button>
+          <button class="toggle-expand js-toggle-expand ${expandArrow}"></button>
           <button class="remove js-remove">X</button>
         </div>
       </li>`;

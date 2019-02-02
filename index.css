@@ -21,16 +21,6 @@ li {
   margin:auto;
 }
 
-.expand-down, .expand-up {
-  transition: background-image 0.2s ease-in-out;
-  background-size:cover;
-  background-position:center;
-  width:30px;
-  height:30px;
-  border-radius: 4px;
-  border:1px solid black;
-  }
-
 .expand-up {
   background: url(assets/up-arrow.png) no-repeat 20px 20px;
 }
@@ -39,9 +29,19 @@ li {
   background: url(assets/down-arrow.png) no-repeat 20px 20px;
 }
 
+.expand-down, .expand-up {
+  transition: background-image 0.2s ease-in-out;
+  background-size:cover;
+  background-position:center;
+  width:30px;
+  height:30px;
+  border-radius: 4px;
+  border:1px solid black;
+}
+
 .expand-down:hover {
   box-shadow: 1px 1px 1px black;
-  }
+}
 
 .star {
   background-size:cover;
