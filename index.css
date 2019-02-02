@@ -2,8 +2,8 @@ body {
   margin:0;
   padding:0;
   width:100%;
+  text-align:center;
 }
-
 
 .error-popup {
   background-color: lightcoral;
@@ -14,12 +14,23 @@ li {
   list-style:none;
 }
 
-.bookmark-item {
-  border:1px solid black;
+.bookmark-list {
+  text-align:left;
+  padding:0;
+  width:60%;
+  margin:auto;
+  margin-top:50px;
+  display:flex;
+  flex-direction: column;
+  align-content: flex-end;
 }
 
-.bookmark-item button {
-  margin:auto;
+.bookmark-item {
+  border:1px solid black;
+  margin-top:2px;
+}
+
+.bookmark-controls {
 }
 
 .expand-up {
@@ -30,7 +41,11 @@ li {
   background: url(assets/down-arrow.png) no-repeat 20px 20px;
 }
 
-.expand-down, .expand-up {
+.remove {
+  background: url(assets/close.png) no-repeat 20px 20px
+}
+
+.expand-down, .expand-up, .remove {
   transition: background-image 0.2s ease-in-out;
   border:1px solid black;
   background-size:cover;
@@ -40,7 +55,7 @@ li {
   border-radius: 4px;
 }
 
-.expand-down:hover, .expand-up:hover {
+.expand-down:hover, .expand-up:hover, .remove:hover {
   box-shadow: 1px 1px 1px black;
 }
 
