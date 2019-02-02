@@ -7,7 +7,7 @@ const bookmark = (function() {
 
   const generateFormHtml = function() {
     return `
-      <form class="add-item-form">
+      <form class="add-item-form" aria-label="add-bookmark-form">
         <label for="item-title">Bookmark Title:</label>
         <input type="text" name = "title" class="item-title">
 
@@ -42,7 +42,7 @@ const bookmark = (function() {
           </ul>
         </span>
         <div class="bookmark-controls js-bookmark-controls">
-          <button class="toggle-expand js-toggle-expand ${expandArrow}"></button>
+        <button class="toggle-expand js-toggle-expand ${expandArrow}" aria-label="expand"></button>
           <button class="remove js-remove">X</button>
         </div>
       </li>`;
