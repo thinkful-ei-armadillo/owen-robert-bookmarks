@@ -5,9 +5,13 @@ body {
 }
 
 
+.error-popup {
+  background-color: lightcoral;
+  color: black;
+}
+
 li {
   list-style:none;
-  
 }
 
 .bookmark-item {
@@ -40,3 +44,28 @@ li {
   box-shadow: 1px 1px 1px black;
 }
 
+.star {
+  background-size:cover;
+  background: url(assets/star.svg) 16px;
+  height: 15px;
+}
+
+.one-star {
+  width: 16px;
+}
+
+.two-star {
+  width: 32px;
+}
+
+.three-star {
+  width: 48px;
+}
+
+.four-star {
+  width: 64px;
+}
+
+.five-star {
+  width: 80px;
+}
