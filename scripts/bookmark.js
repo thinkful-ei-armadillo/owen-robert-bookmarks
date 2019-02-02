@@ -43,7 +43,7 @@ const bookmark = (function() {
         </span>
         <div class="bookmark-controls js-bookmark-controls">
           <button class="toggle-expand js-toggle-expand ${expandArrow}"></button>
-          <button class="remove js-remove">X</button>
+          <button class="remove js-remove"></button>
         </div>
       </li>`;
   };
