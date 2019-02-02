@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 const store = (function(){
@@ -9,7 +10,7 @@ const store = (function(){
 
   const createItem = function(item) {
     items.push(item);
-  }
+  };
 
   return {
     createItem,

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 /* global $, store, api */
 
@@ -19,21 +20,24 @@ const bookmark = (function() {
         <label for="item-rating">Bookmark Rating</label>
         <input type="number" name = "rating" min="1" max="5" value="5" class="item-rating">
 
-        <button type="submit">Submit</button>
+        <button type="submit" role="button">Submit</button>
       </form>`;
   };
 
   const generateBookmarkHtml = function(item) {
     const expanded = item.isExpanded ? `<li>${item.desc}</li><li><a href = "${item.url}">visit site</a></li>` : ''; 
     const expandArrow = item.isExpanded ? 'expand-up' : 'expand-down'; 
-    const expandArrowTest = item.isExpanded ? '^' : 'V'; 
+
+    const ratingClass = ['one-star', 'two-star', 'three-star', 'four-star', 'five-star'];
+
+    console.log(`this bookmark is rated ${item.rating}, which accesses the ${ratingClass[item.rating-1]} string element`)
     
     return `
-      <li class="bookmark-item js-bookmark-item" data-item-id="${item.id}">
+      <li class="bookmark-item js-bookmark-item " data-item-id="${item.id}">
         <span class="bookmark">
           <ul>
             <li><h2>${item.title}</h2></li>
-            <li>${item.rating}</li>
+            <li class="star ${ratingClass[item.rating-1]}"></li>
             ${expanded}
           </ul>
         </span>
@@ -57,7 +61,8 @@ const bookmark = (function() {
   const render = function () {
     $('.js-bookmark-list').html(generateListHtml(filterRating()));
 
-    $('.add-item-panel').empty();
+    $('.add-item-panel, .error-popup').empty();
+    // $('.error-popup').empty();
 
     if (store.isAdding) {
       $('.add-item-panel').html(generateFormHtml());
@@ -99,10 +104,13 @@ const bookmark = (function() {
           store.isAdding = false; //what's going on with this line
           render();
         })
-        .catch(render());
-      // }); // API call to POST item with given parameters, add to store.items after successful run
+        .catch(error => {
+          store.error = error;
+          render();
+        });
     });
   };
+  // }); // API call to POST item with given parameters, add to store.items after successful run
 
   // come back later to handle minRating state reflecting on select element
   const handleMinRating = function () {
@@ -133,6 +141,10 @@ const bookmark = (function() {
       api.deleteItem(itemID)
         .then(() =>{
           store.items = store.items.filter(item => item.id !== itemID);
+          render();
+        })
+        .catch(error => {
+          store.error = error;
           render();
         });
     });

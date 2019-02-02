@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 'use strict';
-/* global store */
 
 const api = function() {
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com';
@@ -19,10 +19,6 @@ const api = function() {
           throw new Error(data.message);
         }
         return data;
-      })
-      .catch(error => {
-        console.log(error);
-        store.error = error;
       });
   };
 
